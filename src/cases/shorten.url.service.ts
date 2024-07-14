@@ -12,15 +12,15 @@ export class ShortenUrlService {
   async execute(shortenUrlDto: ShortenUrlDto): Promise<UrlEntity> {
     this.logger.verbose(this.execute.name);
     try {
-      // let check = await this.urlRepositorie.getOneByColumn(
-      //   'url',
-      //   shortenUrlDto.url,
-      // );
+      let check = await this.urlRepositorie.getOneByColumn(
+        'url',
+        shortenUrlDto.url,
+      );
 
-      // if (check) {
-      //   check['tinnyUrl'] = `http://localhost:3000/${check.tinnyUrl}`;
-      //   return check;
-      // }
+      if (check) {
+        check['tinnyUrl'] = `http://localhost:3000/${check.tinnyUrl}`;
+        return check;
+      }
 
       const url = {
         url: shortenUrlDto.url.split('https://')[1] || shortenUrlDto.url,
