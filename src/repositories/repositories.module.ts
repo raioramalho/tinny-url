@@ -7,6 +7,7 @@ import { UrlEntity, UrlEntitySchema } from 'src/entities/url.entity';
 @Module({
   imports: [
     ConfigModule.forRoot(),
+    MongooseModule.forRoot(`${process.env.NESTJS_MONGODB_URL}`),
     MongooseModule.forFeature([
       {
         name: UrlEntity.name,

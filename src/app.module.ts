@@ -6,23 +6,17 @@ import { ConfigModule } from '@nestjs/config';
 import { GetUrlService } from './cases/get.url.service';
 import { RepositoriesModule } from './repositories/repositories.module';
 import { ShortenUrlService } from './cases/shorten.url.service';
-import { MongooseModule } from '@nestjs/mongoose';
+import { EventsModule } from './events/events.module';
+import { CacheModule } from '@nestjs/cache-manager';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    // CacheModule.register(),
-    MongooseModule.forRoot(`${process.env.NESTJS_MONGODB_URL}`),
+    CacheModule.register(),
     RepositoriesModule,
+    EventsModule,
   ],
   controllers: [AppController],
-  providers: [
-    // {
-    //   provide: APP_INTERCEPTOR,
-    //   useClass: CacheInterceptor,
-    // },
-    ShortenUrlService,
-    GetUrlService,
-  ],
+  providers: [ShortenUrlService, GetUrlService],
 })
 export class AppModule {}

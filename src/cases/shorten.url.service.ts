@@ -27,8 +27,6 @@ export class ShortenUrlService {
         tinnyUrl: `${this.generateCodeForShortenUrl()}`,
       };
 
-      this.logger.debug(url);
-
       let data = await this.urlRepositorie.create(url);
       data['tinnyUrl'] = `http://localhost:3000/${data.tinnyUrl}`;
       return data;

@@ -10,10 +10,14 @@ export class UrlEntity {
   @Prop()
   id?: string;
 
+  @Prop()
+  clicks?: number;
+
   constructor(id?: string, url?: string, tinnyUrl?: string) {
     this.id = id;
     this.tinnyUrl = tinnyUrl;
     this.url = url;
+    this.clicks = 0;
   }
 }
 

@@ -12,6 +12,14 @@ export class UrlRepositorie implements Repositorie<UrlEntity> {
   constructor(
     @InjectModel(UrlEntity.name) private urlModel: Model<UrlEntity>,
   ) {}
+
+  async click(url: UrlEntity): Promise<UrlEntity> {
+    return await this.urlModel.findOneAndUpdate(
+      { tinnyUrl: url.tinnyUrl },
+      { clicks: url.clicks + 1 },
+    );
+  }
+
   async getOneById(id: string): Promise<UrlEntity> {
     this.logger.verbose(this.getOneById.name);
     return await this.urlModel.findById(id);
@@ -30,7 +38,8 @@ export class UrlRepositorie implements Repositorie<UrlEntity> {
     const createdUrl = new this.urlModel({
       url,
       tinnyUrl,
-    });    
+      clicks: 0,
+    });
     return await createdUrl.save();
   }
 }
