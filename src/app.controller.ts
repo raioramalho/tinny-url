@@ -21,6 +21,11 @@ export class AppController {
     private readonly getUrlService: GetUrlService,
   ) {}
 
+  @Get()
+  app() {
+    return { status: 'ok' };
+  }
+
   @Post()
   shortenAUrl_route(@Req() request: any, @Body() body: ShortenUrlDto) {
     this.logger.verbose(this.shortenAUrl_route.name);
