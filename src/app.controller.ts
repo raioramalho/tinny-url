@@ -21,6 +21,7 @@ export class AppController {
     private readonly getUrlService: GetUrlService,
   ) {}
 
+  // start page
   @Get()
   app() {
     return { status: 'ok' };
