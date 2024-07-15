@@ -18,7 +18,7 @@ export class ShortenUrlService {
       );
 
       if (check) {
-        check['tinnyUrl'] = `http://localhost:3000/${check.tinnyUrl}`;
+        check['tinnyUrl'] = `${process.env.NESTJS_HOST}/${check.tinnyUrl}`;
         return check;
       }
 
@@ -28,7 +28,7 @@ export class ShortenUrlService {
       };
 
       let data = await this.urlRepositorie.create(url);
-      data['tinnyUrl'] = `http://localhost:3000/${data.tinnyUrl}`;
+      data['tinnyUrl'] = `${process.env.NESTJS_HOST}/${data.tinnyUrl}`;
       return data;
     } catch (error) {
       throw new HttpException(error.message, error.status);
