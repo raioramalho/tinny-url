@@ -14,8 +14,8 @@ async function bootstrap() {
   );
 
   // App Start
-  await app.listen(3000, () => {
-    Logger.verbose('Server is running on port 3000');
+  await app.listen(process.env.PORT || 4000, () => {
+    Logger.verbose(`Server is running on port ${process.env.PORT || 4000}`);
   });
 }
 bootstrap();
