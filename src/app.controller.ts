@@ -22,10 +22,10 @@ export class AppController {
   ) {}
 
   // start page
-  @Get()
-  app() {
-    return { status: 'ok' };
-  }
+  // @Get()
+  // app() {
+  //   return { status: 'ok' };
+  // }
 
   @Post()
   shortenAUrl_route(@Req() request: any, @Body() body: ShortenUrlDto) {
